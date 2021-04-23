@@ -1,21 +1,13 @@
-def shuffle(deck, show = True):
+def shuffle(deck, inverse = False, show = True):
     temp_deck = []
     length = len(deck)
     for i in range(int(length/2)):
-        temp_deck.append(deck[i])
-        temp_deck.append(deck[i + int(length/2)])
-
-    if show:
-        print(temp_deck)
-
-    return temp_deck
-
-def i_shuffle(deck, show = True):
-    temp_deck = []
-    length = len(deck)
-    for i in range(int(length/2)):
-        temp_deck.append(deck[i + int(length/2)])
-        temp_deck.append(deck[i])        
+        if not inverse:
+            temp_deck.append(deck[i])
+            temp_deck.append(deck[i + int(length/2)])
+        else:
+            temp_deck.append(deck[i + int(length/2)])
+            temp_deck.append(deck[i]) 
 
     if show:
         print(temp_deck)
@@ -63,7 +55,7 @@ if __name__ == "__main__":
             if shuf == "o":
                 deck = shuffle(deck, show = False)
             elif shuf == "i":
-                deck = i_shuffle(deck, show = False)
+                deck = shuffle(deck, inverse = True, show = False)
 
         perfect = check_perfect(deck, deck_base, describe = False)
         count += len(order)
